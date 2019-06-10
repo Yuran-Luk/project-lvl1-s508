@@ -14,7 +14,7 @@ export const engine = (Question, Answer) => {
     }
     const question = Q();
     console.log(`Question: ${question}`);
-    const yourAnswer = readlineSync.question('Your answer: ', { defaultInput: '' });
+    const yourAnswer = readlineSync.question('Your answer: ', { defaultInput: 'err' });
     const answer = A(question);
     if (yourAnswer === answer) {
       console.log('Correct!');
