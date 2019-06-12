@@ -3,6 +3,8 @@
 
 [![Build Status](https://travis-ci.org/Yuran-Luk/project-lvl1-s508.svg?branch=master)](https://travis-ci.org/Yuran-Luk/project-lvl1-s508)
 
-##Asciinema!
-* [**Brain-Even**](https://asciinema.org/connect/524b6f8d-3abd-4348-a02d-416a31a8c961)
+
+## Asciinema!
+* [**Brain-Even**](https://asciinema.org/a/E2YJJEb3aL4OFzwqOZb1ZH7PD)
 * [**Brain-Calc**](https://asciinema.org/a/aoKJpUapbkUlrKVS4dy8WckFY)
+* [**Brain-GCD**](https://asciinema.org/a/rxyEMLB0rlQnS20YvWMoWjf0h)
