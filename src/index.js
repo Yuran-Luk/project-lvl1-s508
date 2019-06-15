@@ -6,22 +6,37 @@ export const printHi = () => {
   return `Hello, ${name}! \n`;
 };
 
-export const engine = (Question, Answer) => {
+const Question = (expression, counter) => {
+  if (expression[counter + 1] === '|') {
+    return expression[counter];
+  }
+  return expression[counter] + Question(expression, counter + 1);
+};
+
+const Answer = (expression, counter) => {
+  if (expression[counter - 1] === '|') {
+    return expression[counter];
+  }
+  return Answer(expression, counter - 1) + expression[counter];
+};
+
+export const engine = (expression) => {
   const name = readlineSync.question('May I have your name? ', { defaultInput: 'noname' });
-  const iter = (Q, A, counter) => {
+  const iter = (counter) => {
     if (counter === 0) {
       return `Congratulations, ${name}!`;
     }
-    const question = Q();
+    const strEx = expression();
+    const question = Question(strEx, 0);
     console.log(`Question: ${question}`);
     const yourAnswer = readlineSync.question('Your answer: ', { defaultInput: 'err' });
-    const answer = A(question);
+    const answer = Answer(strEx, strEx.length - 1);
     if (yourAnswer === answer) {
       console.log('Correct!');
-      return iter(Question, Answer, counter - 1);
+      return iter(counter - 1);
     }
     console.log(`'${yourAnswer}' is wrong answer. Correct answer was '${answer}'.`);
     return `Let's try again, ${name}!`;
   };
-  return iter(Question, Answer, 3);
+  return iter(3);
 };
