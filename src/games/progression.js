@@ -1,10 +1,10 @@
 export default () => {
   const number = Math.floor(Math.random() * (2, 9));
   const coeff = Math.floor(Math.random() * (2, 5));
-  const q = Math.floor(Math.random() * (1, 9));
+  const nothing = Math.floor(Math.random() * (1, 9));
 
   const str = (num, sum, counter) => {
-    if (counter === q) {
+    if (counter === nothing) {
       const answer = num + sum;
       return `.. ${str(num + sum, sum, counter - 1)}|${answer}`;
     }

@@ -1,5 +1,5 @@
-const result = (one, two, sym) => {
-  switch (sym) {
+const result = (one, two, symbol) => {
+  switch (symbol) {
     case '+':
       return one + two;
     case '-':
@@ -17,8 +17,8 @@ export default () => {
     const index = Math.floor(Math.random() * (0, 3));
     return strSym[index];
   };
-  const ranOne = Math.floor(Math.random() * (0, 10));
-  const ranTwo = Math.floor(Math.random() * (0, 10));
+  const ranNumOne = Math.floor(Math.random() * (0, 10));
+  const ranNumTwo = Math.floor(Math.random() * (0, 10));
   const symbol = ranSym();
-  return `${ranOne} ${symbol} ${ranTwo}|${result(ranOne, ranTwo, symbol)}`;
+  return `${ranNumOne} ${symbol} ${ranNumTwo}|${result(ranNumOne, ranNumTwo, symbol)}`;
 };

@@ -10,7 +10,7 @@ const gcd = (little, big) => {
 
 export default () => {
   const ranNum = () => Math.floor(Math.random() * (0, 30));
-  const str = (one, two) => {
+  const strExpression = (one, two) => {
     if (one < 1 || two < 1) {
       return `${one} ${two}|1`;
     }
@@ -19,5 +19,5 @@ export default () => {
     }
     return `${one} ${two}|${gcd(two, one)}`;
   };
-  return str(ranNum(), ranNum());
+  return strExpression(ranNum(), ranNum());
 };
