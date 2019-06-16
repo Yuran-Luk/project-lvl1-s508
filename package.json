@@ -1,7 +1,7 @@
 {
   "name": "yuran_b_games",
   "version": "1.0.8",
-  "description": "",
+  "description": "brain-games",
   "main": "dist/index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
@@ -11,6 +11,13 @@
     "brain-progression": "dist/bin/brain-progression.js",
     "brain-prime": "dist/bin/brain-prime.js"
   },
+  "keywords": [
+  	"brain even",
+  	"brain calc",
+  	"brain gcd",
+  	"brain progression",
+  	"brain prime"
+  ],
   "files": [
     "dist"
   ],
