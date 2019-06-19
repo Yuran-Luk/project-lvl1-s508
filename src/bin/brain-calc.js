@@ -1,6 +1,5 @@
 #!/home/yuran/.nvm/versions/node/v12.2.0/bin/node
-import { Engine } from '..';
-import Expression from '../games/calc';
+import { engine } from '..';
+import gameConditions from '../games/calc';
 
-console.log('Welcome to the Brain Games! \nWhat is the result of the expression?\n');
-console.log(Engine(Expression));
+engine(gameConditions, 'calc');

@@ -1,23 +1,27 @@
-const gcd = (little, big) => {
-  const divisor = (numOne, numTwo, counter) => {
-    if (numOne % counter === 0 && numTwo % counter === 0) {
-      return counter;
+import { getRandomNum } from '..';
+
+const getGreatestDivisor = (smallestNumber, highestNumber) => {
+  const getDivisor = (numberOne, numberTwo, divisor) => {
+    if (numberOne % divisor === 0 && numberTwo % divisor === 0) {
+      return divisor;
     }
-    return divisor(numOne, numTwo, counter - 1);
+    return getDivisor(numberOne, numberTwo, divisor - 1);
   };
-  return divisor(little, big, little);
+  return getDivisor(smallestNumber, highestNumber, smallestNumber);
 };
 
 export default () => {
-  const ranNum = () => Math.floor(Math.random() * (0, 30));
-  const strExpression = (one, two) => {
-    if (one < 1 || two < 1) {
-      return `${one} ${two}|1`;
+  const firstNum = getRandomNum(0, 30);
+  const secondNum = getRandomNum(0, 30);
+  const getGameConditions = (numberOne, numberTwo) => {
+    const question = `${numberOne} ${numberTwo}`;
+    if (numberOne < 1 || numberTwo < 1) {
+      return `${question}|1`;
     }
-    if (one <= two) {
-      return `${one} ${two}|${gcd(one, two)}`;
+    if (numberOne <= numberTwo) {
+      return `${question}|${getGreatestDivisor(numberOne, numberTwo)}`;
     }
-    return `${one} ${two}|${gcd(two, one)}`;
+    return `${question}|${getGreatestDivisor(numberTwo, numberOne)}`;
   };
-  return strExpression(ranNum(), ranNum());
+  return getGameConditions(firstNum, secondNum);
 };

@@ -1,5 +1,9 @@
+import { getRandomNum } from '..';
+
+const isTheNumberEven = number => number % 2 === 0;
+
 export default () => {
-  const number = Math.floor(Math.random() * (0, 100));
-  const answer = (number % 2 === 0) ? 'yes' : 'no';
-  return `${number}|${answer}`;
+  const question = getRandomNum(0, 100);
+  const answer = isTheNumberEven(question) ? 'yes' : 'no';
+  return `${question}|${answer}`;
 };

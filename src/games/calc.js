@@ -1,24 +1,28 @@
-const result = (one, two, symbol) => {
+import { getRandomNum } from '..';
+
+const getAnswer = (numberOne, numberTwo, symbol) => {
   switch (symbol) {
     case '+':
-      return one + two;
+      return numberOne + numberTwo;
     case '-':
-      return one - two;
+      return numberOne - numberTwo;
     case '*':
-      return one * two;
+      return numberOne * numberTwo;
     default:
       return 'err';
   }
 };
 
+const getRandomSymbol = () => {
+  const symbols = '+-*';
+  const index = getRandomNum(0, symbols.length - 1);
+  return symbols[index];
+};
+
 export default () => {
-  const ranSym = () => {
-    const strSym = '+-*';
-    const index = Math.floor(Math.random() * (0, 3));
-    return strSym[index];
-  };
-  const ranNumOne = Math.floor(Math.random() * (0, 10));
-  const ranNumTwo = Math.floor(Math.random() * (0, 10));
-  const symbol = ranSym();
-  return `${ranNumOne} ${symbol} ${ranNumTwo}|${result(ranNumOne, ranNumTwo, symbol)}`;
+  const numberOne = getRandomNum(0, 10);
+  const numberTwo = getRandomNum(0, 10);
+  const symbol = getRandomSymbol();
+  const question = `${numberOne} ${symbol} ${numberTwo}`;
+  return `${question}|${getAnswer(numberOne, numberTwo, symbol)}`;
 };

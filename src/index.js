@@ -1,45 +1,62 @@
 import readlineSync from 'readline-sync';
 
+const askName = () => readlineSync.question('May I have your name? ', { defaultInput: 'noname' });
 
-export const printHi = () => {
-  const name = readlineSync.question('May I have your name? ', { defaultInput: 'noname' });
-  return `Hello, ${name}! \n`;
+export const printHi = () => `Hello, ${askName()}! \n`;
+
+const printGameCondition = (nameOfGame) => {
+  const welcome = 'Welcome to the Brain Games!\n';
+  switch (nameOfGame) {
+    case 'even':
+      return `${welcome}Answer "yes" if number even otherwise answer "no".\n`;
+    case 'gcd':
+      return `${welcome}Find the greatest common divisor of given numbers.\n`;
+    case 'prime':
+      return `${welcome}Answer "yes" if given number is prime. Otherwise answer "no".\n`;
+    case 'progression':
+      return `${welcome}What number is missing in the progression?\n`;
+    case 'calc':
+      return `${welcome}What is the result of the expression?\n`;
+    default:
+      return 'err';
+  }
 };
 
-// Question из строки "(вопрос)|(ответ)" возвращает вопрос
-const Question = (expression, counter) => {
+const getQuestion = (expression, counter) => {
   if (expression[counter + 1] === '|') {
     return expression[counter];
   }
-  return expression[counter] + Question(expression, counter + 1);
+  return expression[counter] + getQuestion(expression, counter + 1);
 };
 
-// Answer из строки "(вопрос)|(ответ)" возвращает ответ
-const Answer = (expression, counter) => {
+const getAnswer = (expression, counter) => {
   if (expression[counter - 1] === '|') {
     return expression[counter];
   }
-  return Answer(expression, counter - 1) + expression[counter];
+  return getAnswer(expression, counter - 1) + expression[counter];
 };
 
-// Движок принимает функцию возвращающую строку - "(вопрос)|(ответ)"
-export const Engine = (expression) => {
-  const name = readlineSync.question('May I have your name? ', { defaultInput: 'noname' });
-  const iter = (counter) => {
-    if (counter === 0) {
+export const engine = (expression, game) => {
+  console.log(printGameCondition(game));
+  const name = askName();
+  const playTheGame = (round) => {
+    if (round === 0) {
       return `Congratulations, ${name}!`;
     }
-    const strExpress = expression(); // "(вопрос)|(ответ)"
-    const question = Question(strExpress, 0); // "вопрос"
+    const stringExpression = expression();
+    const question = getQuestion(stringExpression, 0);
     console.log(`Question: ${question}`);
     const yourAnswer = readlineSync.question('Your answer: ', { defaultInput: 'err' });
-    const answer = Answer(strExpress, strExpress.length - 1); // "верный ответ"
+    const answer = getAnswer(stringExpression, stringExpression.length - 1);
     if (yourAnswer === answer) {
       console.log('Correct!');
-      return iter(counter - 1);
+      return playTheGame(round - 1);
     }
     console.log(`'${yourAnswer}' is wrong answer. Correct answer was '${answer}'.`);
     return `Let's try again, ${name}!`;
   };
-  return iter(3);
+  const numberOfRounds = 3;
+  return playTheGame(numberOfRounds);
 };
+
+export const getRandomNum = (min, max) => Math.round(Math.random() * (max - min) + min);

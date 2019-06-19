@@ -1,18 +1,20 @@
+import { getRandomNum } from '..';
+
+const getProgression = (number, step, invisible, length) => {
+  if (length === invisible) {
+    const answer = number + step;
+    return `.. ${getProgression(number + step, step, invisible, length - 1)}|${answer}`;
+  }
+  if (length < 1) {
+    return number + step;
+  }
+  return `${(number + step)} ${getProgression(number + step, step, invisible, length - 1)}`;
+};
+
 export default () => {
-  const number = Math.floor(Math.random() * (2, 9));
-  const coeff = Math.floor(Math.random() * (2, 5));
-  const nothing = Math.floor(Math.random() * (1, 9));
-
-  const str = (num, sum, counter) => {
-    if (counter === nothing) {
-      const answer = num + sum;
-      return `.. ${str(num + sum, sum, counter - 1)}|${answer}`;
-    }
-    if (counter < 1) {
-      return num + sum;
-    }
-    return `${(num + sum)} ${str(num + sum, sum, counter - 1)}`;
-  };
-
-  return str(number, coeff, 9);
+  const progressionStart = getRandomNum(3, 9);
+  const progressionStep = getRandomNum(3, 6);
+  const invisibleNumber = getRandomNum(2, 9);
+  const progressionLength = 10;
+  return getProgression(progressionStart, progressionStep, invisibleNumber, progressionLength);
 };
