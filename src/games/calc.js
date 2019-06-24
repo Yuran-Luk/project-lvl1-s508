@@ -1,3 +1,4 @@
+import { cons } from 'hexlet-pairs';
 import { getRandomNum } from '..';
 
 const getAnswer = (numberOne, numberTwo, symbol) => {
@@ -24,5 +25,5 @@ export default () => {
   const numberTwo = getRandomNum(0, 10);
   const symbol = getRandomSymbol();
   const question = `${numberOne} ${symbol} ${numberTwo}`;
-  return `${question}|${getAnswer(numberOne, numberTwo, symbol)}`;
+  return cons(question, getAnswer(numberOne, numberTwo, symbol));
 };

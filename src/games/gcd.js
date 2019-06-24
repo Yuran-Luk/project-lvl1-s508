@@ -1,3 +1,4 @@
+import { cons } from 'hexlet-pairs';
 import { getRandomNum } from '..';
 
 const getGreatestDivisor = (smallestNumber, highestNumber) => {
@@ -13,15 +14,12 @@ const getGreatestDivisor = (smallestNumber, highestNumber) => {
 export default () => {
   const firstNum = getRandomNum(0, 30);
   const secondNum = getRandomNum(0, 30);
-  const getGameConditions = (numberOne, numberTwo) => {
-    const question = `${numberOne} ${numberTwo}`;
-    if (numberOne < 1 || numberTwo < 1) {
-      return `${question}|1`;
-    }
-    if (numberOne <= numberTwo) {
-      return `${question}|${getGreatestDivisor(numberOne, numberTwo)}`;
-    }
-    return `${question}|${getGreatestDivisor(numberTwo, numberOne)}`;
-  };
-  return getGameConditions(firstNum, secondNum);
+  const question = `${firstNum} ${secondNum}`;
+  if (firstNum < 1 || secondNum < 1) {
+    return cons(question, 1);
+  }
+  if (firstNum <= secondNum) {
+    return cons(question, getGreatestDivisor(firstNum, secondNum));
+  }
+  return cons(question, getGreatestDivisor(secondNum, firstNum));
 };

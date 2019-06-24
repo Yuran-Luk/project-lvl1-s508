@@ -1,9 +1,9 @@
+import { cons } from 'hexlet-pairs';
 import { getRandomNum } from '..';
 
 const getProgression = (number, step, invisible, length) => {
   if (length === invisible) {
-    const answer = number + step;
-    return `.. ${getProgression(number + step, step, invisible, length - 1)}|${answer}`;
+    return `.. ${getProgression(number + step, step, invisible, length - 1)}`;
   }
   if (length < 1) {
     return number + step;
@@ -16,5 +16,8 @@ export default () => {
   const progressionStep = getRandomNum(3, 6);
   const invisibleNumber = getRandomNum(2, 9);
   const progressionLength = 10;
-  return getProgression(progressionStart, progressionStep, invisibleNumber, progressionLength);
+  const question = getProgression(progressionStart, progressionStep,
+    invisibleNumber, progressionLength);
+  const answer = progressionStart + progressionStep * (progressionLength - invisibleNumber + 1);
+  return cons(question, answer);
 };

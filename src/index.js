@@ -1,8 +1,5 @@
+import { car, cdr } from 'hexlet-pairs';
 import readlineSync from 'readline-sync';
-
-const askName = () => readlineSync.question('May I have your name? ', { defaultInput: 'noname' });
-
-export const printHi = () => `Hello, ${askName()}! \n`;
 
 const printGameCondition = (nameOfGame) => {
   const welcome = 'Welcome to the Brain Games!\n';
@@ -22,32 +19,18 @@ const printGameCondition = (nameOfGame) => {
   }
 };
 
-const getQuestion = (expression, counter) => {
-  if (expression[counter + 1] === '|') {
-    return expression[counter];
-  }
-  return expression[counter] + getQuestion(expression, counter + 1);
-};
-
-const getAnswer = (expression, counter) => {
-  if (expression[counter - 1] === '|') {
-    return expression[counter];
-  }
-  return getAnswer(expression, counter - 1) + expression[counter];
-};
-
 export const engine = (expression, game) => {
   console.log(printGameCondition(game));
-  const name = askName();
+  const name = readlineSync.question('May I have your name? ', { defaultInput: 'noname' });
   const playTheGame = (round) => {
-    if (round === 0) {
+    if (round < 1) {
       return `Congratulations, ${name}!`;
     }
-    const stringExpression = expression();
-    const question = getQuestion(stringExpression, 0);
+    const pairExpression = expression();
+    const question = car(pairExpression);
+    const answer = `${cdr(pairExpression)}`;
     console.log(`Question: ${question}`);
     const yourAnswer = readlineSync.question('Your answer: ', { defaultInput: 'err' });
-    const answer = getAnswer(stringExpression, stringExpression.length - 1);
     if (yourAnswer === answer) {
       console.log('Correct!');
       return playTheGame(round - 1);
