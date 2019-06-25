@@ -24,7 +24,7 @@ export const engine = (expression, game) => {
   const name = readlineSync.question('May I have your name? ', { defaultInput: 'noname' });
   const playTheGame = (round) => {
     if (round < 1) {
-      return `Congratulations, ${name}!`;
+      return console.log(`Congratulations, ${name}!`);
     }
     const pairExpression = expression();
     const question = car(pairExpression);
@@ -35,8 +35,7 @@ export const engine = (expression, game) => {
       console.log('Correct!');
       return playTheGame(round - 1);
     }
-    console.log(`'${yourAnswer}' is wrong answer. Correct answer was '${answer}'.`);
-    return `Let's try again, ${name}!`;
+    return console.log(`'${yourAnswer}' is wrong answer. Correct answer was '${answer}'.\nLet's try again, ${name}!`);
   };
   const numberOfRounds = 3;
   return playTheGame(numberOfRounds);
