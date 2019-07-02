@@ -1,5 +1,4 @@
-#!/home/yuran/.nvm/versions/node/v12.2.0/bin/node
-import { engine } from '..';
-import gameConditions from '../games/calc';
+#!/usr/bin/env node
+import playTheGame from '../games/calc';
 
-engine(gameConditions, 'calc');
+playTheGame();
