@@ -19,7 +19,6 @@ const brainProgression = () => {
   const progression = getProgression(start, step, progressionLength);
   const answer = `${start + step * invisible}`;
   const question = getQuestion(progression, answer);
-  console.log(`!!!!!!!!!!! ${progression}  ((((${answer}))))`);
   return cons(question, answer);
 };
 
