@@ -1,8 +1,11 @@
 import { cons } from 'hexlet-pairs';
 import { getRandomNum, engine } from '..';
 
-const getAnswer = (numberOne, numberTwo, symbol) => {
-  switch (symbol) {
+const gameСondition = 'What is the result of the expression?';
+const signs = '+-*';
+
+const getAnswer = (numberOne, numberTwo, sign) => {
+  switch (sign) {
     case '+':
       return numberOne + numberTwo;
     case '-':
@@ -12,21 +15,13 @@ const getAnswer = (numberOne, numberTwo, symbol) => {
   }
 };
 
-const signs = '+-*';
-const getRandomSymbol = () => {
-  const index = getRandomNum(0, signs.length - 1);
-  return signs[index];
-};
-
 const brainCalc = () => {
   const a = getRandomNum(0, 10);
   const b = getRandomNum(0, 10);
-  const symbol = getRandomSymbol();
-  const question = `${a} ${symbol} ${b}`;
-  return cons(question, getAnswer(a, b, symbol));
+  const getRandomSign = () => signs[getRandomNum(0, signs.length - 1)];
+  const sign = getRandomSign();
+  const question = `${a} ${sign} ${b}`;
+  return cons(question, getAnswer(a, b, sign));
 };
 
-export default () => {
-  console.log('Welcome to the Brain Games!\nWhat is the result of the expression?\n');
-  return engine(brainCalc);
-};
+export default () => engine(brainCalc, gameСondition);

@@ -1,6 +1,8 @@
 import { cons } from 'hexlet-pairs';
 import { getRandomNum, engine } from '..';
 
+const gameСondition = 'Answer "yes" if number even otherwise answer "no".';
+
 const isEven = number => number % 2 === 0;
 
 const brainEven = () => {
@@ -9,7 +11,4 @@ const brainEven = () => {
   return cons(question, answer);
 };
 
-export default () => {
-  console.log('Welcome to the Brain Games!\nAnswer "yes" if number even otherwise answer "no".\n');
-  return engine(brainEven);
-};
+export default () => engine(brainEven, gameСondition);

@@ -1,6 +1,8 @@
 import { cons } from 'hexlet-pairs';
 import { getRandomNum, engine } from '..';
 
+const gameСondition = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
 const isPrime = (number) => {
   const howManyDivisors = (dividend, divisor) => {
     if (divisor < 2) {
@@ -15,12 +17,9 @@ const isPrime = (number) => {
 };
 
 const brainPrime = () => {
-  const number = getRandomNum(0, 101);
-  const answer = isPrime(number) ? 'yes' : 'no';
-  return cons(number, answer);
+  const question = getRandomNum(0, 101);
+  const answer = isPrime(question) ? 'yes' : 'no';
+  return cons(question, answer);
 };
 
-export default () => {
-  console.log('Welcome to the Brain Games!\nAnswer "yes" if given number is prime. Otherwise answer "no".\n');
-  return engine(brainPrime);
-};
+export default () => engine(brainPrime, gameСondition);
