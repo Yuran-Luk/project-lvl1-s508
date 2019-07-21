@@ -1,25 +1,22 @@
 import { cons } from 'hexlet-pairs';
-import { getRandomNum, engine } from '..';
+import engine from '..';
+import getRandomNum from '../utils';
 
 const gameСondition = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (number) => {
-  const howManyDivisors = (dividend, divisor) => {
-    if (divisor < 2) {
-      return 1;
+  for (let i = number - 1; i > 1; i -= 1) {
+    if (number % i === 0) {
+      return false;
     }
-    if (dividend % divisor === 0) {
-      return 1 + howManyDivisors(dividend, divisor - 1);
-    }
-    return howManyDivisors(dividend, divisor - 1);
-  };
-  return howManyDivisors(number, number) === 2;
+  }
+  return true;
 };
 
-const brainPrime = () => {
+const getGameArguments = () => {
   const question = getRandomNum(0, 101);
   const answer = isPrime(question) ? 'yes' : 'no';
   return cons(question, answer);
 };
 
-export default () => engine(brainPrime, gameСondition);
+export default () => engine(getGameArguments, gameСondition);

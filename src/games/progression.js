@@ -1,5 +1,6 @@
 import { cons } from 'hexlet-pairs';
-import { getRandomNum, engine } from '..';
+import engine from '..';
+import getRandomNum from '../utils';
 
 const gameСondition = 'What number is missing in the progression?';
 const progressionLength = 10;
@@ -17,16 +18,14 @@ const getQuestion = (progression, answer) => {
   return `${firstPart}..${secondPart}`;
 };
 
-const brainProgression = () => {
+const getGameArguments = () => {
   const start = getRandomNum(3, 9);
   const step = getRandomNum(3, 6);
   const progression = getProgression(start, step, progressionLength);
   const elementHidden = getRandomNum(0, progressionLength - 1);
   const answer = `${start + step * elementHidden}`;
   const question = getQuestion(progression, answer);
-  console.log(Number(answer));
-  console.log(getProgression(start, step, progressionLength));
   return cons(question, answer);
 };
 
-export default () => engine(brainProgression, gameСondition);
+export default () => engine(getGameArguments, gameСondition);

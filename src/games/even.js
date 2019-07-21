@@ -1,14 +1,15 @@
 import { cons } from 'hexlet-pairs';
-import { getRandomNum, engine } from '..';
+import engine from '..';
+import getRandomNum from '../utils';
 
 const gameСondition = 'Answer "yes" if number even otherwise answer "no".';
 
 const isEven = number => number % 2 === 0;
 
-const brainEven = () => {
+const getGameArguments = () => {
   const question = getRandomNum(0, 100);
   const answer = isEven(question) ? 'yes' : 'no';
   return cons(question, answer);
 };
 
-export default () => engine(brainEven, gameСondition);
+export default () => engine(getGameArguments, gameСondition);
