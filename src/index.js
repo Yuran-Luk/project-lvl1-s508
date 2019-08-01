@@ -16,11 +16,9 @@ export default (getGameArguments, condition) => {
     if (yourAnswer !== answer) {
       console.log(`'${yourAnswer}' is wrong answer. Correct answer was '${answer}'.`);
       console.log(`Let's try again, ${name}!`);
-      break;
+      return;
     }
     console.log('Correct!');
-    if (i === roundsCount) {
-      console.log(`Congratulations, ${name}!`);
-    }
   }
+  console.log(`Congratulations, ${name}!`);
 };

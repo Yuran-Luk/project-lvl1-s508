@@ -4,24 +4,19 @@ import getRandomNum from '../utils';
 
 const gameСondition = 'Find the greatest common divisor of given numbers.';
 
-const getGcd = (numOne, numTwo) => {
-  const getDivisor = (smallestNumber, hightestNumber, divisor) => {
-    if (smallestNumber % divisor === 0 && hightestNumber % divisor === 0) {
-      return divisor;
-    }
-    return getDivisor(smallestNumber, hightestNumber, divisor - 1);
-  };
-  if (numOne < numTwo) {
-    return getDivisor(numOne, numTwo, numOne);
+const getGcd = (a, b) => {
+  if (a === 0 || b === 0) {
+    return a + b;
   }
-  return getDivisor(numTwo, numOne, numTwo);
+  const x = a > b ? getGcd(a % b, b) : getGcd(a, b % a);
+  return x;
 };
 
-const getGameArguments = () => {
+const getGameData = () => {
   const a = getRandomNum(0, 30);
   const b = getRandomNum(0, 30);
   const question = `${a} ${b}`;
   return cons(question, getGcd(a, b));
 };
 
-export default () => engine(getGameArguments, gameСondition);
+export default () => engine(getGameData, gameСondition);

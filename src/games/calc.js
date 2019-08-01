@@ -5,7 +5,7 @@ import getRandomNum from '../utils';
 const gameСondition = 'What is the result of the expression?';
 const signs = '+-*';
 
-const getAnswer = (a, b, sign) => {
+const calculate = (a, b, sign) => {
   switch (sign) {
     case '+':
       return a + b;
@@ -16,13 +16,13 @@ const getAnswer = (a, b, sign) => {
   }
 };
 
-const getGameArguments = () => {
+const getGameData = () => {
   const a = getRandomNum(0, 10);
   const b = getRandomNum(0, 10);
   const getRandomSign = () => signs[getRandomNum(0, signs.length - 1)];
   const sign = getRandomSign();
   const question = `${a} ${sign} ${b}`;
-  return cons(question, getAnswer(a, b, sign));
+  return cons(question, calculate(a, b, sign));
 };
 
-export default () => engine(getGameArguments, gameСondition);
+export default () => engine(getGameData, gameСondition);

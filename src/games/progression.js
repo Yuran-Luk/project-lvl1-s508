@@ -18,7 +18,7 @@ const getQuestion = (progression, answer) => {
   return `${firstPart}..${secondPart}`;
 };
 
-const getGameArguments = () => {
+const getGameData = () => {
   const start = getRandomNum(3, 9);
   const step = getRandomNum(3, 6);
   const progression = getProgression(start, step, progressionLength);
@@ -28,4 +28,4 @@ const getGameArguments = () => {
   return cons(question, answer);
 };
 
-export default () => engine(getGameArguments, gameСondition);
+export default () => engine(getGameData, gameСondition);
