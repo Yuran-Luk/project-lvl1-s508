@@ -11,16 +11,17 @@ const calculate = (a, b, sign) => {
       return a + b;
     case '-':
       return a - b;
-    default:
+    case '*':
       return a * b;
+    default:
+      return false;
   }
 };
 
 const getGameData = () => {
   const a = getRandomNum(0, 10);
   const b = getRandomNum(0, 10);
-  const getRandomSign = () => signs[getRandomNum(0, signs.length - 1)];
-  const sign = getRandomSign();
+  const sign = signs[getRandomNum(0, signs.length - 1)];
   const question = `${a} ${sign} ${b}`;
   return cons(question, calculate(a, b, sign));
 };
