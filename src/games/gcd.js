@@ -16,7 +16,7 @@ const getGameData = () => {
   const a = getRandomNum(0, 30);
   const b = getRandomNum(0, 30);
   const question = `${a} ${b}`;
-  return cons(question, getGcd(a, b));
+  return cons(question, String(getGcd(a, b)));
 };
 
 export default () => engine(getGameData, gameСondition);

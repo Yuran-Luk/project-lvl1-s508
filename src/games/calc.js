@@ -23,7 +23,7 @@ const getGameData = () => {
   const b = getRandomNum(0, 10);
   const sign = signs[getRandomNum(0, signs.length - 1)];
   const question = `${a} ${sign} ${b}`;
-  return cons(question, calculate(a, b, sign));
+  return cons(question, String(calculate(a, b, sign)));
 };
 
 export default () => engine(getGameData, gameСondition);
